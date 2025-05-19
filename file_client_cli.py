@@ -40,7 +40,7 @@ def send_command(command_str=""):
 def remote_list():
     hasil = send_command("LIST")
     if hasil.get('status') == 'OK':
-        print("📄 Daftar file yang tersedia:")
+        print(" Daftar file yang tersedia:")
         for file in hasil['data']:
             print(f"- {file}")
         return True
@@ -55,18 +55,18 @@ def remote_get(filename=""):
         try:
             with open(hasil['data_namafile'], 'wb') as fp:
                 fp.write(base64.b64decode(hasil['data_file']))
-            print(f"✅ File '{filename}' berhasil diunduh.")
+            print(f" File '{filename}' berhasil diunduh.")
             return True
         except Exception as e:
-            print(f"❌ Kesalahan saat menyimpan file: {e}")
+            print(f" Kesalahan saat menyimpan file: {e}")
     else:
-        print("❌ Gagal mengunduh file.")
+        print(" Gagal mengunduh file.")
     return False
 
 
 def remote_upload(filepath="", upload_as=""):
     if not os.path.exists(filepath):
-        print(f"❌ File '{filepath}' tidak ditemukan.")
+        print(f" File '{filepath}' tidak ditemukan.")
         return False
 
     try:
